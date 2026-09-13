@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbf5ec">
+  <title>Для самой родной — 14 сентября</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+    :root { --ink:#332b2b; --muted:#766967; --cream:#fbf5ec; --rose:#c7676d; --coral:#ed9a82; --plum:#633b4e; --line:rgba(74,46,48,.16); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--cream); font-family:Manrope, sans-serif; overflow-x:hidden; }
+    body:before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.28; z-index:5; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E"); }
+    h1,h2,h3,p { margin:0; }
+    h1,h2,h3 { font-family:'Cormorant Garamond', serif; font-weight:600; }
+    .page { position:relative; }
+    .topbar { width:100%; position:absolute; top:0; left:0; z-index:3; padding:28px 5vw; display:flex; justify-content:space-between; align-items:center; color:#fff; font-size:11px; letter-spacing:.16em; text-transform:uppercase; }
+    .brand { display:flex; align-items:center; gap:10px; }
+    .brand-mark { width:26px; height:26px; border:1px solid rgba(255,255,255,.75); border-radius:50%; display:grid; place-items:center; font-family:serif; font-size:16px; }
+    .date-label { opacity:.82; }
+    .hero { min-height:100svh; position:relative; display:grid; align-items:end; padding:15vh 8vw 9vh; overflow:hidden; color:#fff; background:linear-gradient(110deg,rgba(44,24,34,.82),rgba(77,34,47,.28)), url('c3a34127-eddb-48eb-a9bc-e1e1062a37e2.jpg') center/cover; }
+    .hero:after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(26,13,17,.7),transparent 55%); }
+    .hero-content { position:relative; z-index:1; max-width:760px; animation:rise 1.2s ease both; }
+    .eyebrow { display:flex; align-items:center; gap:14px; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:#ffd7c8; margin-bottom:25px; }
+    .eyebrow:before { content:""; display:block; width:44px; height:1px; background:#f1b59f; }
+    .hero h1 { font-size:clamp(64px,11vw,156px); line-height:.78; letter-spacing:-.055em; max-width:790px; }
+    .hero h1 em { display:block; color:#ffb49e; font-style:italic; font-weight:400; padding-left:12vw; }
+    .hero-bottom { margin-top:48px; display:flex; gap:28px; align-items:center; }
+    .hero-bottom p { max-width:330px; font-size:14px; line-height:1.7; color:#f6e7df; }
+    .scroll-cue { height:72px; width:72px; border:1px solid rgba(255,255,255,.45); border-radius:50%; display:grid; place-items:center; color:#fff; text-decoration:none; font-size:20px; transition:.25s; }
+    .scroll-cue:hover { background:#fff; color:var(--plum); transform:translateY(4px); }
+    .section { padding:140px 8vw; position:relative; }
+    .intro { display:grid; grid-template-columns:.8fr 1.2fr; gap:10vw; align-items:end; }
+    .section-kicker { color:var(--rose); letter-spacing:.2em; font-size:11px; text-transform:uppercase; margin-bottom:25px; }
+    .intro h2 { font-size:clamp(50px,7vw,100px); line-height:.86; letter-spacing:-.05em; }
+    .intro h2 span { color:var(--rose); font-style:italic; font-weight:400; }
+    .letter { border-top:1px solid var(--line); padding-top:28px; max-width:430px; }
+    .letter p { font-family:'Cormorant Garamond',serif; font-size:27px; line-height:1.12; color:#4d3b3e; }
+    .signature { margin-top:26px; color:var(--rose); font-family:'Cormorant Garamond',serif; font-size:25px; font-style:italic; }
+    .gallery { padding-top:20px; display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:70px; gap:18px; }
+    .photo { position:relative; overflow:hidden; background:#e6d8ce; box-shadow:0 12px 35px rgba(72,35,40,.13); }
+    .photo img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.8); transition:transform .8s ease, filter .8s; }
+    .photo:hover img { transform:scale(1.06); filter:saturate(1); }
+    .photo:nth-child(1) { grid-column:1/6; grid-row:1/7; transform:rotate(-2deg); }
+    .photo:nth-child(2) { grid-column:6/10; grid-row:2/8; transform:rotate(2deg); }
+    .photo:nth-child(3) { grid-column:10/13; grid-row:1/5; transform:rotate(-1deg); }
+    .photo:nth-child(4) { grid-column:1/4; grid-row:8/13; transform:rotate(1deg); }
+    .photo:nth-child(5) { grid-column:4/9; grid-row:9/15; transform:rotate(-1deg); }
+    .photo:nth-child(6) { grid-column:9/13; grid-row:7/14; transform:rotate(2deg); }
+    .photo:nth-child(7) { grid-column:2/6; grid-row:15/20; transform:rotate(-2deg); }
+    .photo:nth-child(8) { grid-column:6/11; grid-row:16/21; transform:rotate(1deg); }
+    .photo:nth-child(9) { grid-column:11/13; grid-row:15/19; }
+    .quote { padding:150px 8vw 170px; text-align:center; background:#f1e5d8; overflow:hidden; }
+    .quote h2 { font-size:clamp(58px,9vw,130px); line-height:.82; letter-spacing:-.06em; max-width:900px; margin:auto; color:var(--plum); }
+    .quote h2 em { color:var(--rose); font-weight:400; }
+    .quote p { max-width:430px; margin:36px auto 0; font-size:13px; line-height:1.8; color:var(--muted); }
+    .finale { min-height:100svh; position:relative; overflow:hidden; display:grid; place-items:center; text-align:center; color:#fff; background:radial-gradient(circle at 50% 42%,#a75561 0,#532d45 34%,#241a2c 100%); }
+    .finale:before { content:""; position:absolute; inset:-20%; opacity:.26; background:repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 9deg, #f1b98c 10deg 11deg, transparent 12deg 20deg); animation:spin 34s linear infinite; }
+    .finale-inner { position:relative; z-index:1; padding:80px 20px; }
+    .finale .eyebrow { justify-content:center; color:#ffd5c4; }
+    .finale h2 { font-size:clamp(72px,12vw,175px); line-height:.72; letter-spacing:-.07em; }
+    .finale h2 span { display:block; color:#ffbd9f; font-style:italic; font-weight:400; }
+    .finale-copy { max-width:390px; margin:45px auto 0; font-size:14px; line-height:1.8; color:#f5ddd8; }
+    .heart { width:110px; height:110px; border:1px solid rgba(255,213,196,.5); border-radius:50%; margin:48px auto 0; display:grid; place-items:center; font-size:42px; color:#ffbaa1; animation:pulse 2s ease-in-out infinite; }
+    .cutscene-launch { margin-top:32px; padding:16px 25px; border:1px solid rgba(255,213,196,.65); border-radius:99px; color:#fff; background:rgba(255,255,255,.1); font:600 11px Manrope,sans-serif; letter-spacing:.11em; text-transform:uppercase; cursor:pointer; transition:.3s; }
+    .gift-link { display:inline-block; margin-top:14px; padding:14px 22px; border-radius:99px; color:var(--plum); background:#ffd1bf; font:800 11px Manrope,sans-serif; letter-spacing:.11em; text-decoration:none; text-transform:uppercase; transition:.3s; }
+    .gift-link:hover { background:#fff8f0; transform:translateY(-3px); }
+    .cutscene-launch:hover { color:var(--plum); background:#ffd1bf; transform:translateY(-3px); }
+    .cutscene { position:fixed; inset:0; z-index:20; display:grid; place-items:center; overflow:hidden; color:#fff8f1; background:#2e1b30; opacity:0; pointer-events:none; transition:opacity .6s ease; }
+    .cutscene.open { opacity:1; pointer-events:auto; }
+    .cutscene:before { content:""; position:absolute; inset:-40%; background:conic-gradient(from 0deg,transparent,#d87575,transparent 28%,#69466c,transparent 60%,#f2b28f,transparent); opacity:.4; filter:blur(45px); animation:spin 28s linear infinite; }
+    .cutscene:after { content:""; position:absolute; inset:0; background:radial-gradient(circle at center,transparent 5%,rgba(24,12,29,.72) 78%); }
+    .cutscene-content { width:min(760px,88vw); position:relative; z-index:1; text-align:center; }
+    .cutscene-top { display:flex; justify-content:space-between; align-items:center; color:#f5bdad; font-size:10px; letter-spacing:.18em; text-transform:uppercase; }
+    .cutscene-progress { height:2px; margin:24px 0 48px; background:rgba(255,255,255,.2); }
+    .cutscene-progress span { display:block; width:0; height:100%; background:#ffb499; transition:width .1s linear; }
+    .scene-message { min-height:230px; display:grid; align-content:center; justify-items:center; }
+    .scene-message h2 { max-width:760px; font-size:clamp(55px,9vw,120px); line-height:.8; letter-spacing:-.06em; animation:scene-in .8s ease both; }
+    .scene-message h2 em { display:block; color:#ffb499; font-style:italic; font-weight:400; }
+    .scene-message p { max-width:440px; margin-top:27px; color:#f5dbd4; font:24px/1.08 'Cormorant Garamond',serif; animation:scene-in .8s .12s ease both; }
+    .scene-controls { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:42px; }
+    .scene-control { padding:12px 19px; border:1px solid rgba(255,255,255,.45); border-radius:99px; color:#fff8f1; background:rgba(255,255,255,.08); font:600 10px Manrope,sans-serif; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; }
+    .scene-gift { display:none; padding:12px 19px; border:0; border-radius:99px; color:#2e1b30; background:#ffb499; font:800 10px Manrope,sans-serif; letter-spacing:.12em; text-decoration:none; text-transform:uppercase; }
+    .cutscene.final-moment .scene-gift { display:inline-block; }
+    .scene-control:hover { background:rgba(255,255,255,.2); }
+    .scene-note { margin-top:18px; color:rgba(255,255,255,.48); font-size:10px; }
+    @keyframes scene-in { from { opacity:0; transform:translateY(18px) scale(.98); } to { opacity:1; transform:none; } }
+    .cutscene.final-moment .scene-message h2 { animation:pulse 2s infinite; }
+    .petals { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
+    .petals i { position:absolute; top:-30px; width:16px; height:26px; border-radius:90% 0 90% 0; background:#ffb499; opacity:.75; animation:petal-fall linear infinite; }
+    .petals i:nth-child(1) { left:8%; animation-duration:12s; animation-delay:-2s; }
+    .petals i:nth-child(2) { left:21%; background:#f7d7a5; animation-duration:15s; animation-delay:-8s; }
+    .petals i:nth-child(3) { left:38%; animation-duration:10s; animation-delay:-4s; }
+    .petals i:nth-child(4) { left:57%; background:#f7d7a5; animation-duration:14s; animation-delay:-6s; }
+    .petals i:nth-child(5) { left:72%; animation-duration:11s; animation-delay:-1s; }
+    .petals i:nth-child(6) { left:90%; background:#f7d7a5; animation-duration:16s; animation-delay:-9s; }
+    @keyframes rise { from{opacity:0;transform:translateY(25px)} to{opacity:1;transform:none} }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    @keyframes pulse { 50%{transform:scale(1.08); box-shadow:0 0 40px rgba(255,168,142,.3)} }
+    @keyframes blink { to{transform:scale(1.8); background:var(--plum)} }
+    @keyframes petal-fall { to { transform:translateY(110vh) translateX(80px) rotate(520deg); } }
+    @media (max-width:700px) {
+      .topbar { padding:22px 6vw; }
+      .date-label { display:none; }
+      .hero { padding:18vh 7vw 10vh; }
+      .hero h1 { font-size:clamp(62px,19vw,110px); }
+      .hero h1 em { padding-left:12vw; }
+      .hero-bottom { margin-top:38px; align-items:flex-start; }
+      .scroll-cue { flex:none; width:58px; height:58px; }
+      .section { padding:95px 7vw; }
+      .intro { display:block; }
+      .letter { margin-top:60px; }
+      .letter p { font-size:25px; }
+      .gallery { grid-auto-rows:44px; gap:10px; }
+      .photo:nth-child(1) { grid-column:1/8; grid-row:1/7; }
+      .photo:nth-child(2) { grid-column:8/13; grid-row:2/8; }
+      .photo:nth-child(3) { grid-column:8/13; grid-row:8/13; }
+      .photo:nth-child(4) { grid-column:1/6; grid-row:8/14; }
+      .photo:nth-child(5) { grid-column:1/8; grid-row:14/21; }
+      .photo:nth-child(6) { grid-column:8/13; grid-row:14/21; }
+      .photo:nth-child(7) { grid-column:1/6; grid-row:21/27; }
+      .photo:nth-child(8) { grid-column:6/13; grid-row:22/28; }
+      .photo:nth-child(9) { display:none; }
+      .quote { padding:100px 7vw 120px; }
+      .finale-inner { padding:50px 7vw; }
+      .finale h2 { font-size:23vw; }
+      .scene-message { min-height:280px; }
+      .scene-message h2 { font-size:20vw; }
+      .scene-message p { font-size:23px; }
+      .scene-controls { margin-top:25px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar"><div class="brand"><span class="brand-mark">♡</span><span>С любовью</span></div><div class="date-label">14 сентября · особенный день</div></header>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Для самой родной</div>
+        <h1>С днём<br><em>рождения</em></h1>
+        <div class="hero-bottom"><p>Сегодня весь мир становится теплее, потому что именно в этот день родились Вы.</p><a class="scroll-cue" href="#letter" aria-label="Листать вниз">↓</a></div>
+      </div>
+    </section>
+
+    <section class="section" id="letter">
+      <div class="intro"><div><div class="section-kicker">Небольшое письмо</div><h2>Спасибо<br>за <span>тепло.</span></h2></div><div class="letter"><p>Пробабушка, Вы — наше семейное солнце. В Ваших руках любое воспоминание становится особенным, а рядом с Вами всегда спокойно и хорошо.</p><div class="signature">Обнимаем всей семьёй</div></div></div>
+    </section>
+
+    <section class="section" aria-label="Семейные фотографии"><div class="section-kicker">Моменты, которые любим</div><div class="gallery">
+      <div class="photo"><img src="c3a34127-eddb-48eb-a9bc-e1e1062a37e2.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="baeacbb8-78ad-420d-b07e-74ac7e4b0907.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="b6cbfc3d-5cd0-4b7f-9c41-d74688ef82a9.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="b1ef255d-821f-4cb7-a64a-bacf98c6eb35.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="74e4bae8-afa6-4e37-a533-2672de36efde.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="71008e19-0ba8-49c2-8905-0326ae6bf6a1.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="42822433-65fa-4f21-9949-03a9b774a4e5.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="40c3dc95-0782-4f64-a365-68f9cbff1012.jpg" alt="Семейное воспоминание"></div>
+      <div class="photo"><img src="1edcf861-4ea2-4125-a9c8-206d81ec55ae.jpg" alt="Семейное воспоминание"></div>
+    </div></section>
+
+    <section class="quote"><h2>Пусть каждый день<br>будет <em>добрым.</em></h2><p>Здоровья, радости, душевного покоя и ещё много-много лет рядом с теми, кто Вас любит.</p></section>
+    <section class="finale"><div class="finale-inner"><div class="eyebrow">И самое главное</div><h2>Мы Вас<br><span>любим</span></h2><p class="finale-copy">Пусть этот день наполнится цветами, улыбками и нашими самыми нежными объятиями.</p><div class="heart">♥</div><button class="cutscene-launch" id="launchCutscene" type="button">Запустить поздравление для Гали</button><br><a class="gift-link" href="gift.html">Получите подарок</a></div></section>
+  </main>
+  <div class="cutscene" id="cutscene" aria-hidden="true">
+    <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="cutscene-content">
+      <div class="cutscene-top"><span>Для Гали · от всей семьи</span><span id="sceneTimer">01:30</span></div>
+      <div class="cutscene-progress"><span id="sceneProgress"></span></div>
+      <div class="scene-message" id="sceneMessage"><h2>Галя,<br><em>это для Вас</em></h2><p>Нажмите кнопку, и пусть начнётся маленькая история о нашей любви.</p></div>
+      <div class="scene-controls"><button class="scene-control" id="scenePause" type="button">Пауза</button><button class="scene-control" id="sceneClose" type="button">Закрыть</button><a class="scene-gift" id="sceneGift" href="gift.html">Получить подарок</a></div>
+      <div class="scene-note">Продолжительность поздравления · 1 минута 30 секунд</div>
+    </div>
+  </div>
+  <script>
+    let audio, timer, isPlaying = false;
+    let sceneTimer, sceneStartedAt, sceneElapsed = 0, scenePaused = false;
+    const launch = document.getElementById('launchCutscene');
+    const cutscene = document.getElementById('cutscene');
+    const sceneTimerLabel = document.getElementById('sceneTimer');
+    const sceneProgress = document.getElementById('sceneProgress');
+    const sceneMessage = document.getElementById('sceneMessage');
+    const pauseButton = document.getElementById('scenePause');
+    const closeButton = document.getElementById('sceneClose');
+    const notes = [261.63, 329.63, 392, 523.25, 392, 329.63, 293.66, 392];
+    const scenes = [
+      ['Галя, Вы — наше', 'самое тёплое солнце', 'Спасибо за ласку, заботу и тот уют, который живёт рядом с Вами.'],
+      ['В Ваших руках', 'становится спокойнее', 'Вы умеете согреть одним словом, улыбкой и самым родным объятием.'],
+      ['Пусть впереди', 'будет много радости', 'Пусть каждый новый день приносит здоровье, силы, цветы и счастливые новости.'],
+      ['Мы рядом', 'и очень Вас любим', 'Ваша семья всегда с Вами. Вы наша история, наше сердце и наше большое счастье.'],
+      ['С днём рождения,', 'дорогая Галя!', 'Будьте счастливы ещё сто лет. Крепко обнимаем и целуем всей семьёй!']
+    ];
+    function playNote(frequency, start, duration) {
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
+      oscillator.type = 'sine'; oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0, start); gain.gain.linearRampToValueAtTime(.065, start + .05); gain.gain.exponentialRampToValueAtTime(.001, start + duration);
+      oscillator.connect(gain).connect(audio.destination); oscillator.start(start); oscillator.stop(start + duration);
+    }
+    function melody() { if (!isPlaying) return; const now = audio.currentTime; notes.forEach((note, index) => playNote(note, now + index * .48, .7)); timer = setTimeout(melody, 3600); }
+    function speak(message) { if (!('speechSynthesis' in window)) return; speechSynthesis.cancel(); const voice = new SpeechSynthesisUtterance(message.join(' ')); voice.lang = 'ru-RU'; voice.rate = .82; voice.pitch = 1.05; voice.volume = .72; speechSynthesis.speak(voice); }
+    function renderScene(index) { const scene = scenes[index]; sceneMessage.innerHTML = '<h2>' + scene[0] + '<br><em>' + scene[1] + '</em></h2><p>' + scene[2] + '</p>'; sceneMessage.querySelector('h2').style.animation = 'none'; void sceneMessage.offsetWidth; sceneMessage.querySelector('h2').style.animation = 'scene-in .8s ease both'; speak(scene); }
+    function updateScene() { if (scenePaused) return; sceneElapsed = (performance.now() - sceneStartedAt) / 1000; const left = Math.max(0, 90 - sceneElapsed); const minutes = String(Math.floor(left / 60)).padStart(2, '0'); const seconds = String(Math.ceil(left % 60)).padStart(2, '0'); sceneTimerLabel.textContent = minutes + ':' + seconds; sceneProgress.style.width = Math.min(100, sceneElapsed / 90 * 100) + '%'; const index = Math.min(scenes.length - 1, Math.floor(sceneElapsed / 18)); if (index !== Number(sceneMessage.dataset.scene)) { sceneMessage.dataset.scene = index; renderScene(index); } if (sceneElapsed >= 90) { clearInterval(sceneTimer); clearTimeout(timer); isPlaying = false; if (audio) audio.suspend(); if ('speechSynthesis' in window) speechSynthesis.cancel(); cutscene.classList.add('final-moment'); pauseButton.textContent = 'Начать заново'; } }
+    function startCutscene() { cutscene.classList.add('open'); cutscene.setAttribute('aria-hidden', 'false'); scenePaused = false; sceneElapsed = 0; sceneMessage.dataset.scene = '-1'; sceneStartedAt = performance.now(); pauseButton.textContent = 'Пауза'; clearInterval(sceneTimer); sceneTimer = setInterval(updateScene, 100); renderScene(0); if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)(); isPlaying = true; audio.resume(); melody(); }
+    launch.addEventListener('click', startCutscene);
+    pauseButton.addEventListener('click', () => { if (sceneElapsed >= 90) { startCutscene(); return; } scenePaused = !scenePaused; if (scenePaused) { sceneElapsed = (performance.now() - sceneStartedAt) / 1000; pauseButton.textContent = 'Продолжить'; if (audio) audio.suspend(); if ('speechSynthesis' in window) speechSynthesis.pause(); } else { sceneStartedAt = performance.now() - sceneElapsed * 1000; pauseButton.textContent = 'Пауза'; if (audio) audio.resume(); if ('speechSynthesis' in window) speechSynthesis.resume(); } });
+    closeButton.addEventListener('click', () => { clearInterval(sceneTimer); cutscene.classList.remove('open', 'final-moment'); cutscene.setAttribute('aria-hidden', 'true'); scenePaused = true; if (audio) { audio.suspend(); isPlaying = false; } if ('speechSynthesis' in window) speechSynthesis.cancel(); });
+  </script>
+</body>
+</html>

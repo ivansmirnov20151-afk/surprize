@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1c1b2c">
+  <title>Подарок для Гали</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600;700&display=swap');
+    :root { --cream:#fff8ef; --pink:#ffb49e; --plum:#321f35; --green:#8ee7c6; }
+    * { box-sizing:border-box; }
+    body { min-height:100svh; margin:0; display:grid; place-items:center; overflow:hidden; color:var(--cream); background:radial-gradient(circle at 50% 40%,#70405d,#2d2036 55%,#171622); font-family:Manrope,Arial,sans-serif; }
+    body:before { content:""; position:fixed; inset:-30%; background:conic-gradient(from 0deg,transparent,#e9827f55,transparent 25%,#8ee7c655,transparent 50%,#ffce9250,transparent 75%); filter:blur(30px); animation:spin 24s linear infinite; }
+    .start-screen { position:relative; z-index:1; width:min(620px,88vw); text-align:center; }
+    .kicker { color:var(--green); font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; }
+    h1 { margin:22px 0 18px; font:600 clamp(62px,11vw,120px)/.76 'Cormorant Garamond',serif; letter-spacing:-.06em; }
+    h1 span { display:block; color:var(--pink); font-style:italic; font-weight:500; }
+    .start-text { max-width:360px; margin:0 auto 34px; color:#f4deda; font-size:14px; line-height:1.75; }
+    .start-button { padding:16px 25px; border:1px solid rgba(255,255,255,.5); border-radius:99px; color:var(--plum); background:var(--pink); font:700 11px Manrope,sans-serif; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:.3s; }
+    .start-button:hover { background:#fff; transform:translateY(-3px); }
+    .ticket-screen { position:fixed; inset:0; z-index:3; display:grid; place-items:center; padding:25px; opacity:0; pointer-events:none; transition:opacity .7s ease; }
+    .ticket-screen.visible { opacity:1; pointer-events:auto; }
+    .ticket-content { width:min(650px,92vw); text-align:center; }
+    .ticket-title { margin:0 0 10px; color:var(--pink); font:500 clamp(35px,6vw,64px)/.9 'Cormorant Garamond',serif; }
+    .ticket-hint { margin:0 0 30px; color:#f6e4df; font-size:13px; }
+    .ticket { width:min(590px,92vw); margin:auto; padding:0; position:relative; display:grid; grid-template-columns:1fr 145px; overflow:hidden; border:0; border-radius:14px; color:#302137; background:#fff8ed; box-shadow:0 20px 60px #120d1d99; cursor:pointer; transform:translateY(30px) rotate(-2deg); opacity:0; animation:ticket-in .9s .2s ease forwards; transition:.3s; }
+    .ticket:hover { transform:translateY(-4px) rotate(0); box-shadow:0 28px 70px #120d1dcc; }
+    .ticket-main { padding:27px 30px; text-align:left; border-right:2px dashed #d49c91; }
+    .ticket-label { color:#b66568; font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    .ticket h2 { margin:10px 0 22px; font:600 46px/.8 'Cormorant Garamond',serif; letter-spacing:-.06em; }
+    .ticket-info { display:flex; justify-content:space-between; gap:15px; font-size:10px; line-height:1.5; text-transform:uppercase; }
+    .ticket-info strong { display:block; font-size:16px; text-transform:none; }
+    .ticket-side { display:grid; place-items:center; position:relative; background:#f7c4b3; }
+    .ticket-side:before { content:""; position:absolute; left:-9px; top:-10px; width:18px; height:18px; border-radius:50%; background:#4b2d4a; box-shadow:0 36px 0 #4b2d4a,0 72px 0 #4b2d4a,0 108px 0 #4b2d4a,0 144px 0 #4b2d4a,0 180px 0 #4b2d4a,0 216px 0 #4b2d4a,0 252px 0 #4b2d4a,0 288px 0 #4b2d4a,0 324px 0 #4b2d4a; }
+    .plane { font-size:42px; transform:rotate(-25deg); }
+    .click-note { margin-top:25px; color:#e8c7c2; font-size:11px; letter-spacing:.09em; text-transform:uppercase; }
+    .full-image { position:fixed; inset:0; z-index:5; display:grid; place-items:center; padding:25px; background:#171321ed; opacity:0; pointer-events:none; transition:opacity .6s ease; }
+    .full-image.open { opacity:1; pointer-events:auto; }
+    .full-image img { max-width:min(92vw,1100px); max-height:86svh; object-fit:contain; border-radius:12px; box-shadow:0 25px 90px #0009; transform:scale(.7) rotate(-3deg); transition:transform .7s cubic-bezier(.2,.8,.2,1); }
+    .full-image.open img { transform:scale(1) rotate(0); }
+    .close { position:absolute; top:22px; right:25px; width:42px; height:42px; border:1px solid #ffffff88; border-radius:50%; color:#fff; background:#ffffff12; font-size:23px; cursor:pointer; }
+    .full-caption { position:absolute; bottom:25px; color:#f5dcd4; font-size:12px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes ticket-in { to { opacity:1; transform:translateY(0) rotate(-2deg); } }
+    @media(max-width:600px) { .ticket { grid-template-columns:1fr 92px; } .ticket-main { padding:22px 18px; } .ticket h2 { font-size:39px; } .ticket-info { gap:8px; } .ticket-side:before { box-shadow:0 28px 0 #4b2d4a,0 56px 0 #4b2d4a,0 84px 0 #4b2d4a,0 112px 0 #4b2d4a,0 140px 0 #4b2d4a,0 168px 0 #4b2d4a,0 196px 0 #4b2d4a,0 224px 0 #4b2d4a,0 252px 0 #4b2d4a,0 280px 0 #4b2d4a; } }
+  </style>
+</head>
+<body>
+  <main class="start-screen" id="startScreen">
+    <div class="kicker">Маленький сюрприз</div>
+    <h1>Подарок<br><span>для Гали</span></h1>
+    <p class="start-text">Нажмите кнопку, чтобы получить специальный авиабилет. А потом кликните на него, чтобы открыть подарок.</p>
+    <button class="start-button" id="startButton" type="button">Открыть подарок</button>
+  </main>
+
+  <section class="ticket-screen" id="ticketScreen" aria-hidden="true">
+    <div class="ticket-content">
+      <h2 class="ticket-title">Нажмите на ваш авиабилет</h2>
+      <p class="ticket-hint">Он доставит Вас прямо к подарку</p>
+      <button class="ticket" id="ticket" type="button">
+        <span class="ticket-main"><span class="ticket-label">Праздничный авиабилет</span><h2>Галя</h2><span class="ticket-info"><span>Откуда<strong>Любовь</strong></span><span>Куда<strong>Счастье</strong></span><span>Рейс<strong>14·09</strong></span></span></span>
+        <span class="ticket-side"><span class="plane">✈</span></span>
+      </button>
+      <div class="click-note">Нажмите на билет</div>
+    </div>
+  </section>
+
+  <section class="full-image" id="fullImage" aria-hidden="true">
+    <button class="close" id="closeImage" type="button" aria-label="Закрыть">×</button>
+    <img src="ChatGPT Image 13 сент. 2026 г., 20_26_35.png" alt="Подарочное изображение для Гали">
+    <div class="full-caption">С любовью для Гали · с днём рождения</div>
+  </section>
+
+  <script>
+    let audio;
+    const startScreen = document.getElementById('startScreen');
+    const startButton = document.getElementById('startButton');
+    const ticketScreen = document.getElementById('ticketScreen');
+    const ticket = document.getElementById('ticket');
+    const fullImage = document.getElementById('fullImage');
+    const closeImage = document.getElementById('closeImage');
+    function playChime() { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); const now = audio.currentTime; [523.25,659.25,783.99].forEach((frequency,index) => { const oscillator = audio.createOscillator(); const gain = audio.createGain(); oscillator.type='sine'; oscillator.frequency.value=frequency; gain.gain.setValueAtTime(0,now+index*.16); gain.gain.linearRampToValueAtTime(.12,now+index*.16+.04); gain.gain.exponentialRampToValueAtTime(.001,now+index*.16+.8); oscillator.connect(gain).connect(audio.destination); oscillator.start(now+index*.16); oscillator.stop(now+index*.16+.85); }); }
+    startButton.addEventListener('click', () => { playChime(); startScreen.style.display='none'; ticketScreen.classList.add('visible'); ticketScreen.setAttribute('aria-hidden','false'); });
+    ticket.addEventListener('click', () => { playChime(); fullImage.classList.add('open'); fullImage.setAttribute('aria-hidden','false'); });
+    closeImage.addEventListener('click', () => { fullImage.classList.remove('open'); fullImage.setAttribute('aria-hidden','true'); });
+    fullImage.addEventListener('click', (event) => { if (event.target === fullImage) closeImage.click(); });
+  </script>
+</body>
+</html>
